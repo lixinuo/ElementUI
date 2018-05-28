@@ -1,36 +1,25 @@
 <template>
   <div>
-    <div>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <div class="block">
+      <span class="demonstration">默认click触发子菜单</span>
+      <el-cascader :options="options" v-model="selectedOptions" @change="handleChange"></el-cascader>
     </div>
 
-    <div style="margin-top: 20px;">
-      <el-input v-model="input1" :disabled="true" placeholder="请输入内容"></el-input>
+    <div class="block">
+      <span class="demonstration">hover触发子菜单</span>
+      <el-cascader expand-trigger="hover" :options="options" v-model="selectedOptions2" @change="handleChange"></el-cascader>
     </div>
 
-    <div style="margin-top: 20px;">
-      <el-input v-model="input2" clearable></el-input>
+    <div class="block">
+      <el-cascader :options="options" :show-all-levels="false" v-model="selectedOptions3"></el-cascader>
     </div>
 
-    <div style="margin-top: 20px;">属性方式：
-      <el-input v-model="input3" placeholder="请输入内容" suffix-icon="el-icon-date"></el-input>
-      <el-input v-model="input4" placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+    <div class="block">
+      <el-cascader :options="options" v-model="selectedOptions4"></el-cascader>
     </div>
 
-    <div style="margin-top: 20px;">slot方式：
-      <el-input v-model="input5" placeholder="请输入内容"><i slot="suffix" class="el-input__icon el-icon-date"></i></el-input>
-      <div style="margin-top: 20px;"></div>
-      <el-input v-model="input6" placeholder="请输入内容"><i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>
-    </div>
-
-    <div style="margin-top: 20px;">
-      <el-input v-model="textarea1" type="textarea" :row="2" placeholder="请输入内容"></el-input>
-    </div>
-
-    <div style="margin-top: 20px;">123
-      <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea2" style="width: 200px;"></el-input>
-      <div style="margin-top: 20px;"></div>
-      <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4 }" placeholder="请输入内容" v-model="textarea3" style="width: 200px;"></el-input>
+    <div class="block">
+      <el-cascader :options="options" change-on-select></el-cascader>
     </div>
   </div>
 </template>
@@ -39,21 +28,217 @@
 export default {
   data () {
     return {
-      input: '',
-      input1: '',
-      input2: '',
-      input3: '',
-      input4: '',
-      input5: '',
-      input6: '',
-      textarea1: '',
-      textarea2: '',
-      textarea3: ''
+      options: [{
+        value: 'zhinan',
+        label: '指南',
+        children: [{
+          value: 'shejiyuanze',
+          label: '设计原则',
+          children: [{
+            value: 'yizhi',
+            label: '一致',
+            disabled: true,
+          }, {
+            value: 'fankui',
+            label: '反馈'
+          }, {
+            value: 'xiaolv',
+            label: '效率'
+          }, {
+            value: 'kekong',
+            label: '可控'
+          }]
+        }, {
+          value: 'daohang',
+          label: '导航',
+          children: [{
+            value: 'cexiangdaohang',
+            label: '侧向导航'
+          }, {
+            value: 'dingbudaohang',
+            label: '顶部导航'
+          }]
+        }]
+      }, {
+        value: 'zujian',
+        label: '组件',
+        children: [{
+          value: 'basic',
+          label: 'Basic',
+          children: [{
+            value: 'layout',
+            label: 'Layout 布局'
+          }, {
+            value: 'color',
+            label: 'Color 色彩'
+          }, {
+            value: 'typography',
+            label: 'Typography 字体'
+          }, {
+            value: 'icon',
+            label: 'Icon 图标'
+          }, {
+            value: 'button',
+            label: 'Button 按钮'
+          }]
+        }, {
+          value: 'form',
+          label: 'Form',
+          children: [{
+            value: 'radio',
+            label: 'Radio 单选框'
+          }, {
+            value: 'checkbox',
+            label: 'Checkbox 多选框'
+          }, {
+            value: 'input',
+            label: 'Input 输入框'
+          }, {
+            value: 'input-number',
+            label: 'InputNumber 计数器'
+          }, {
+            value: 'select',
+            label: 'Select 选择器'
+          }, {
+            value: 'cascader',
+            label: 'Cascader 级联选择器'
+          }, {
+            value: 'switch',
+            label: 'Switch 开关'
+          }, {
+            value: 'slider',
+            label: 'Slider 滑块'
+          }, {
+            value: 'time-picker',
+            label: 'TimePicker 时间选择器'
+          }, {
+            value: 'date-picker',
+            label: 'DatePicker 日期选择器'
+          }, {
+            value: 'datetime-picker',
+            label: 'DateTimePicker 日期时间选择器'
+          }, {
+            value: 'upload',
+            label: 'Upload 上传'
+          }, {
+            value: 'rate',
+            label: 'Rate 评分'
+          }, {
+            value: 'form',
+            label: 'Form 表单'
+          }]
+        }, {
+          value: 'data',
+          label: 'Data',
+          children: [{
+            value: 'table',
+            label: 'Table 表格'
+          }, {
+            value: 'tag',
+            label: 'Tag 标签'
+          }, {
+            value: 'progress',
+            label: 'Progress 进度条'
+          }, {
+            value: 'tree',
+            label: 'Tree 树形控件'
+          }, {
+            value: 'pagination',
+            label: 'Pagination 分页'
+          }, {
+            value: 'badge',
+            label: 'Badge 标记'
+          }]
+        }, {
+          value: 'notice',
+          label: 'Notice',
+          children: [{
+            value: 'alert',
+            label: 'Alert 警告'
+          }, {
+            value: 'loading',
+            label: 'Loading 加载'
+          }, {
+            value: 'message',
+            label: 'Message 消息提示'
+          }, {
+            value: 'message-box',
+            label: 'MessageBox 弹框'
+          }, {
+            value: 'notification',
+            label: 'Notification 通知'
+          }]
+        }, {
+          value: 'navigation',
+          label: 'Navigation',
+          children: [{
+            value: 'menu',
+            label: 'NavMenu 导航菜单'
+          }, {
+            value: 'tabs',
+            label: 'Tabs 标签页'
+          }, {
+            value: 'breadcrumb',
+            label: 'Breadcrumb 面包屑'
+          }, {
+            value: 'dropdown',
+            label: 'Dropdown 下拉菜单'
+          }, {
+            value: 'steps',
+            label: 'Steps 步骤条'
+          }]
+        }, {
+          value: 'others',
+          label: 'Others',
+          children: [{
+            value: 'dialog',
+            label: 'Dialog 对话框'
+          }, {
+            value: 'tooltip',
+            label: 'Tooltip 文字提示'
+          }, {
+            value: 'popover',
+            label: 'Popover 弹出框'
+          }, {
+            value: 'card',
+            label: 'Card 卡片'
+          }, {
+            value: 'carousel',
+            label: 'Carousel 走马灯'
+          }, {
+            value: 'collapse',
+            label: 'Collapse 折叠面板'
+          }]
+        }]
+      }, {
+        value: 'ziyuan',
+        label: '资源',
+        children: [{
+          value: 'axure',
+          label: 'Axure Components'
+        }, {
+          value: 'sketch',
+          label: 'Sketch Templates'
+        }, {
+          value: 'jiaohu',
+          label: '组件交互文档'
+        }]
+      }],
+      selectedOptions: [],
+      selectedOptions2: [],
+      selectedOptions3: [],
+      selectedOptions4: ['zujian', 'basic', 'color']
     };
   },
   methods: {
+    handleChange(value) {
+      console.log(value);
+    }
+  },
+  mounted() {
   }
 }
 </script>
 <style>
+.block { margin-top: 20px; }
 </style>
