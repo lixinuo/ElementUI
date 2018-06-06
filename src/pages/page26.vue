@@ -1,20 +1,23 @@
 <template>
   <div>
     <div class="top">
-      <span class="demonstration">Transfer穿梭框</span>
-      <el-transfer v-model="value1" :data="data"></el-transfer>
+      <span class="demonstration">有默认值</span>
+      <el-color-picker v-model="color1"></el-color-picker>
     </div>
 
     <div class="top">
-      <span class="demonstration">可</span>
+      <span class="demonstration">无默认值</span>
+      <el-color-picker v-model="color2"></el-color-picker>
     </div>
 
     <div class="top">
       <span class="demonstration">选择透明度</span>
+      <el-color-picker v-model="color3" show-alpha></el-color-picker>
     </div>
 
     <div class="top">
       <span class="demonstration">预定义颜色</span>
+      <el-color-picker v-model="color4" show-alpha :predefine="predefineColors"></el-color-picker>
     </div>
 
     <div class="top">
@@ -27,23 +30,14 @@
 <script>
 export default {
   data () {
-    const generateData = _ => {
-      const data = [];
-      for(let i = 1; i <= 15; i++){
-        data.push({
-          key: i,
-          label: `备选项${ i }`,
-          disabled: i % 4 === 0
-        });
-      }
-      return data;
-    };
     return {
-      data: generateData(),
-      value1: [1, 4]
-
-    };
-
+      color1: '#409EFF',
+      color2: null,
+      color3: 'rgba(19, 206, 102, 0.8)',
+      color4: 'rgna(255, 69, 0, 0.68)',
+      color5: null,
+      predefineColors: ['#ff4500', '#ff8c00' , '#ffd700', 'rgba(255,69,0,0.68)']
+    }
   },
   methods: {
 
