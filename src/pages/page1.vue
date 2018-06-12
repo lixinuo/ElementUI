@@ -6,7 +6,7 @@
     </div>
 
     <div class="top">
-      <span class="demonstration">可</span>
+      <span class="demonstration">可搜索</span>
     </div>
 
     <div class="top">
